@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSV2Salesforce</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>Generate records for any of your Salesforce objects, with ease via a drag and drop CSV upload. No need to give users too many permissions for this task!</description>
+    <lightningComponents>
+        <isExposed>isExposed</isExposed>
+        <name>csv2Salesforce</name>
+        <targets>lightning__RecordPage</targets>
+        <targets>lightningCommunity__Default</targets>
+        <targets>lightning__AppPage</targets>
+        <targets>lightning__HomePage</targets>
+        <targets>lightningCommunity__Page</targets>
+    </lightningComponents>
+    <namespacePrefix>csv2sf</namespacePrefix>
+    <types>
+        <members>Csv2SalesforceController</members>
+        <members>Csv2SalesforceControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>csv2Salesforce</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>53.0</version>
+</Package>

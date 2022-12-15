@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>CSV2Salesforce</masterLabel>
+    <description>Upload a CSV containing field API names as column headers and rows as records. Select your object. Upload and you're done!</description>
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+      <targetConfig targets="lightning__AppPage, lightning__RecordPage, lightning__HomePage, lightningCommunity__Default">
+          <property name="sObjectType" type="String" default="Account" label="Enter the default sObject API name, eg. Account OR Custom_Object__c" />
+          <property name="readOnlysObject" type="Boolean" label="Disable object change in UI?" />
+      </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

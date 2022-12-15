@@ -1,0 +1,67 @@
+<template>
+    <template if:true={showLoadingSpinner}>
+        <div style="z-index: 10000 !important;">
+            <lightning-spinner alternative-text="Uploading......" size="medium" style="z-index: 10000 !important;"></lightning-spinner>
+        </div>
+    </template>
+    <template if:true={helpMessage}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Need help?</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-tabset>
+                        <lightning-tab label="Standard User">
+                            <p><b>Steps to use this tool:</b></p>
+                            <ol class="slds-list_ordered slds-p-around_small" >
+                                <li>Ensure that the 'sObject' in the text box is correct for the type of record you wish to upload - eg. 'Account'</li>
+                                <li>Drag and Drop or click 'Upload Files'</li>
+                                <li>Select your CSV file with the data you wish to insert - Columns are fields, rows are records</li>
+                                <li>Click the blue 'Upload CSV File' button</li>
+                            </ol>
+                            <p><em>Top Tip - The column headers in your CSV MUST match the API names of the field you are trying to populate.</em></p>
+                        </lightning-tab>
+                        <lightning-tab label="Admin User">
+                            <p><b>Steps to configure:</b></p>
+                            <ol class="slds-list_ordered slds-p-around_small">
+                                <li>Edit this page</li>
+                                <li>Click on this component</li>
+                                <li>Place the component on any Lightning page</li>
+                                <li>Select a default sObject for records to be inserted into</li>
+                                <li>Check the 'Disable object change in UI?' box if you <b>DO NOT</b> wish for the user to change the type of record inserted</li>
+                                <li>Save and Activate the page</li>
+                            </ol>
+                            <p><em>Top Tip - The default sObject must match the objects API name.</em></p>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeHelp} title="Close">Close <span class="slds-assistive-text">Close</span></button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <lightning-card title={cmpTitle}>
+        <div style="margin-left:4%; margin:0px auto; width: 300px;">
+            <div>
+                <lightning-input label="" name="file uploader" onchange={handleFilesChange} type="file" accept=".csv"></lightning-input>
+            </div>
+            <br/>
+            <lightning-input type="text" label="Enter the sObject API name for the records you wish to insert." value={sObjectType} onchange={onChangesObjectImput} readonly={readOnlysObject}></lightning-input>
+            <br/>
+            <div class="slds-text-body_small slds-text-color_error">{fileName}
+            </div>
+            <br/>
+            <div>
+                <lightning-button class="slds-m-top--medium" label={UploadFile} onclick={handleSave} variant="brand" disabled={isTrue}></lightning-button>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:help" onclick={openHelp}></lightning-button-icon>
+        </div>
+    </lightning-card>
+</template>
